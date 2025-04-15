@@ -14,8 +14,9 @@ const serviceAccount = require('./config/bemanager-ecf7e-firebase-adminsdk-fbsvc
 const posts = require('./posts');
 const createUser = require('./createUser');
 const createLeagues = require('./createLeagues');
-const createDivisions = require('./createDivisions');
 const saveDataToDB = require('./saveDataToDB');
+const getLeagues = require('./getLeagues');
+const example = require('./example');
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -34,5 +35,6 @@ const db = admin.firestore();
 exports.posts = onRequest(posts(db));
 exports.createUser = onRequest(createUser);
 exports.createLeagues = onRequest(createLeagues(db));
-exports.createDivisions = onRequest(createDivisions(db));
 exports.saveDataToDB = onRequest(saveDataToDB(db));
+exports.getLeagues = onRequest(getLeagues(db));
+exports.example = onRequest(example(db));

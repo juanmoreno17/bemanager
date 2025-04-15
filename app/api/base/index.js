@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const base = 'https://us-central1-bemanager-aa981.cloudfunctions.net/';
+const base = 'https://us-central1-bemanager-ecf7e.cloudfunctions.net/';
 
 const instance = axios.create({ baseURL: base });
 
