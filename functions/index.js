@@ -17,6 +17,9 @@ const createLeagues = require('./createLeagues');
 const saveDataToDB = require('./saveDataToDB');
 const getLeagues = require('./getLeagues');
 const example = require('./example');
+const createGameLeague = require('./createGameLeague');
+const getMyGameLeagues = require('./getMyGameLeagues');
+const getGameLeagues = require('./getGameLeagues');
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -38,3 +41,6 @@ exports.createLeagues = onRequest(createLeagues(db));
 exports.saveDataToDB = onRequest(saveDataToDB(db));
 exports.getLeagues = onRequest(getLeagues(db));
 exports.example = onRequest(example(db));
+exports.createGameLeague = onRequest(createGameLeague(db));
+exports.getMyGameLeagues = onRequest(getMyGameLeagues(db));
+exports.getGameLeagues = onRequest(getGameLeagues(db));

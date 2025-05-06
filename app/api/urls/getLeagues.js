@@ -1,3 +1,3 @@
 import { request } from '../base';
 
-export const getLeagues = (data) => request({ url: '/getLeagues', method: 'GET', data });
+export const getLeagues = () => request({ url: '/getLeagues', method: 'GET' });

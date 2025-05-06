@@ -63,7 +63,7 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
                             .catch((err) => console.error(err));
                     }}
                 />
-                <TouchableOpacity onPress={() => navigation.navigate('CreateUser')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Leagues')}>
                     <Text style={{ color: '#52C1CA', fontWeight: 'bold', marginTop: 20 }}>
                         Create an Account
                     </Text>
