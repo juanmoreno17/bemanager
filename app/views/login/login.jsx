@@ -3,6 +3,8 @@ import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
+import { useLogin } from './login.hooks';
+
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
 
@@ -14,6 +16,7 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
     const [Password, setPassword] = useState();
 
     const navigation = useNavigation();
+    const { onSubmit } = useLogin();
 
     /*auth().signOut()
           .then(() => {
@@ -25,10 +28,15 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
     useEffect(() => {
         auth().onAuthStateChanged((usr) => {
             if (usr) {
-                navigation.navigate('BottomTabs');
+                navigation.navigate('Leagues');
             }
         });
     }, [navigation]);
+
+    const cleanStates = () => {
+        setEmail('');
+        setPassword('');
+    };
 
     return (
         <View style={styles.container}>
@@ -54,16 +62,10 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
                 <Button
                     title="Login"
                     action={() => {
-                        auth()
-                            .signInWithEmailAndPassword(Email, Password)
-                            .then((usr) => {
-                                console.log(usr);
-                                navigation.navigate('BottomTabs');
-                            })
-                            .catch((err) => console.error(err));
+                        onSubmit(Email, Password, cleanStates);
                     }}
                 />
-                <TouchableOpacity onPress={() => navigation.navigate('Leagues')}>
+                <TouchableOpacity onPress={() => navigation.navigate('CreateUser')}>
                     <Text style={{ color: '#52C1CA', fontWeight: 'bold', marginTop: 20 }}>
                         Create an Account
                     </Text>

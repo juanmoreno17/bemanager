@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import auth from '@react-native-firebase/auth';
 
-//API
-import { useApiMutation } from '../../api/hooks';
-import { createUser } from '../../api/urls/users';
+//Hooks
+import { useCreateUser } from './createUser.hooks';
 
 //Components
 import { Button } from '../../components/button';
@@ -33,11 +31,7 @@ export const CreateUser = (props) => {
 
     const navigation = useNavigation();
 
-    const { mutateAsync } = useApiMutation(
-        createUser,
-        () => console.log('User created'),
-        (err) => console.error({ err }),
-    );
+    const { onSubmit } = useCreateUser();
 
     return (
         <View style={styles.container}>
@@ -166,17 +160,7 @@ export const CreateUser = (props) => {
                         displayName: userName,
                         photoURL: Uri,
                     };
-                    mutateAsync(usr)
-                        .then(() => {
-                            auth()
-                                .signInWithEmailAndPassword(Email, Password)
-                                .then((user) => {
-                                    console.log({ user, usr });
-                                    navigation.navigate('Leagues');
-                                })
-                                .catch((err) => console.error(err));
-                        })
-                        .catch((err) => console.error({ err }));
+                    onSubmit(usr);
                 }}
             />
         </View>

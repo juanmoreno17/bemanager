@@ -1,29 +1,29 @@
 const uuid = require('uuid');
-//const client = require('./twilio');
 
 module.exports = function (db) {
     return function (req, res) {
-        const { idLiga, nombre, idUsuario, nombreUsuario } = req.body;
+        const { idLiga, nombre, idUsuario, nombreUsuario, phoneNumber } = req.body;
         if (!idLiga) return res.status(404).send({ err: 'No se ha enviado un idLiga' });
         if (!nombre) return res.status(404).send({ err: 'No se ha enviado un Nombre' });
         if (!idUsuario) return res.status(404).send({ err: 'No se ha enviado un idUsuario' });
-        //if (!phoneNumber) return res.status(404).send({ err: 'No se ha enviado un phoneNumber' });
+        if (!phoneNumber) return res.status(404).send({ err: 'No se ha enviado un phoneNumber' });
         if (!nombreUsuario)
             return res.status(404).send({ err: 'No se ha enviado un nombre de usuario' });
-        /*const letters = '0123456789ABCDEF';
+        const letters = '0123456789ABCDEF';
         const codLiga = Array.from(
             { length: 6 },
             () => letters[Math.floor(Math.random() * letters.length)],
-        ).join('');*/
+        ).join('');
         const league = {
             idLigaJuego: uuid.v4(),
             idLiga,
             nombre,
             propietario: idUsuario,
+            jugadores: [idUsuario],
             estado: 'abierta',
+            codLiga,
         };
         const player = {
-            idLigaJuego: league.idLigaJuego,
             idUsuario,
             nombreUsuario,
             presupuesto: 0,
@@ -49,7 +49,13 @@ module.exports = function (db) {
                             .doc()
                             .set(player)
                             .then(() => {
-                                return res.status(200).send({ data: league });
+                                return db
+                                    .collection('messages')
+                                    .add({
+                                        to: phoneNumber,
+                                        body: `El código para entrar en tu liga es ${codLiga}`,
+                                    })
+                                    .then(() => res.status(200).send({ data: league }));
                             })
                             .catch((error) => {
                                 return res

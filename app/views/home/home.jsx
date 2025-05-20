@@ -1,7 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from './home.styles';
+import { useMyContext } from '../../hooks/myContext';
 
 export const Home = () => {
-    return <View style={styles.container}>{/* Your code here */}</View>;
+    const { myGameLeague } = useMyContext();
+    const { user } = useMyContext();
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>
+                Bienvenido a {myGameLeague.nombre}, {user.displayName}
+            </Text>
+        </View>
+    );
 };

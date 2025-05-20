@@ -34,7 +34,7 @@ const getButton = ({ navigation }) => (
                 marginTop: 3,
             }}
         />
-        <Text style={{ color: '#FFFFFF' }}>Log Out</Text>
+        <Text style={{ color: '#FFFFFF' }}>Cerrar sesión</Text>
     </TouchableOpacity>
 );
 
