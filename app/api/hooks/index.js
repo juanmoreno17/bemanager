@@ -10,7 +10,10 @@ export const useApiMutation = (fn, success, error, options) => {
             console.log('api mutation success');
             success && success(data);
         },
-        onError: error,
+        onError: (err) => {
+            console.error('api mutation error', err);
+            error && error(err);
+        },
         ...options,
     });
 };

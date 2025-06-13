@@ -2,14 +2,16 @@ const { FieldValue } = require('firebase-admin/firestore');
 
 module.exports = function (db) {
     return function (req, res) {
-        const { codLiga, idUsuario, nombreUsuario } = req.body;
+        const { codLiga, idUsuario, nombreUsuario, photoURL } = req.body;
         if (!codLiga) return res.status(404).send({ err: 'No se ha enviado un codLiga' });
         if (!idUsuario) return res.status(404).send({ err: 'No se ha enviado un idUsuario' });
+        if (!photoURL) return res.status(404).send({ err: 'No se ha enviado un photoURL' });
         if (!nombreUsuario)
             return res.status(404).send({ err: 'No se ha enviado un nombre de usuario' });
         const player = {
             idUsuario,
             nombreUsuario,
+            photoURL,
             presupuesto: 0,
             puntuacion: 0,
             puntuacionTotal: 0,

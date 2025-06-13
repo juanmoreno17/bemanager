@@ -9,7 +9,8 @@ const data = [
         valor: '4.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -19,7 +20,8 @@ const data = [
         valor: '1.500.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -29,7 +31,8 @@ const data = [
         valor: '20.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -39,7 +42,8 @@ const data = [
         valor: '4.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -49,7 +53,8 @@ const data = [
         valor: '4.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -59,7 +64,8 @@ const data = [
         valor: '1.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -69,7 +75,8 @@ const data = [
         valor: '3.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -79,7 +86,8 @@ const data = [
         valor: '1.800.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -89,7 +97,8 @@ const data = [
         valor: '8.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -99,7 +108,8 @@ const data = [
         valor: '1.800.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -109,7 +119,8 @@ const data = [
         valor: '3.500.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -119,7 +130,8 @@ const data = [
         valor: '3.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -129,7 +141,8 @@ const data = [
         valor: '7.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -139,7 +152,8 @@ const data = [
         valor: '2.300.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -149,7 +163,8 @@ const data = [
         valor: '15.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -159,7 +174,8 @@ const data = [
         valor: '12.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -169,7 +185,8 @@ const data = [
         valor: '3.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -179,7 +196,8 @@ const data = [
         valor: '1.800.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -189,7 +207,8 @@ const data = [
         valor: '2.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -199,7 +218,8 @@ const data = [
         valor: '1.800.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -209,7 +229,8 @@ const data = [
         valor: '5.000.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
     {
         idJugador: uuid.v4(),
@@ -219,7 +240,8 @@ const data = [
         valor: '3.500.000 €',
         puntuacion: 0,
         estado: 'Disponible',
-        propietario: 'Ninguno',
+        escudoEquipo:
+            'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
     },
 ];
 

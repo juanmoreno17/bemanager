@@ -2,11 +2,12 @@ const uuid = require('uuid');
 
 module.exports = function (db) {
     return function (req, res) {
-        const { idLiga, nombre, idUsuario, nombreUsuario, phoneNumber } = req.body;
+        const { idLiga, nombre, idUsuario, nombreUsuario, phoneNumber, photoURL } = req.body;
         if (!idLiga) return res.status(404).send({ err: 'No se ha enviado un idLiga' });
         if (!nombre) return res.status(404).send({ err: 'No se ha enviado un Nombre' });
         if (!idUsuario) return res.status(404).send({ err: 'No se ha enviado un idUsuario' });
         if (!phoneNumber) return res.status(404).send({ err: 'No se ha enviado un phoneNumber' });
+        if (!photoURL) return res.status(404).send({ err: 'No se ha enviado un photoURL' });
         if (!nombreUsuario)
             return res.status(404).send({ err: 'No se ha enviado un nombre de usuario' });
         const letters = '0123456789ABCDEF';
@@ -26,6 +27,7 @@ module.exports = function (db) {
         const player = {
             idUsuario,
             nombreUsuario,
+            photoURL,
             presupuesto: 0,
             puntuacion: 0,
             puntuacionTotal: 0,

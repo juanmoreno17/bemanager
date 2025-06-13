@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
 import { useLogin } from './login.hooks';
+import { useUserContext } from '../../hooks/userContext';
 
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
@@ -14,6 +15,7 @@ import icono from '../../assets/icons/iconoo.png';
 export const Login = ({ click = () => {}, print = () => {} }) => {
     const [Email, setEmail] = useState();
     const [Password, setPassword] = useState();
+    const { setUser } = useUserContext();
 
     const navigation = useNavigation();
     const { onSubmit } = useLogin();
@@ -27,7 +29,9 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
 
     useEffect(() => {
         auth().onAuthStateChanged((usr) => {
+            //console.log('User', usr);
             if (usr) {
+                setUser(usr);
                 navigation.navigate('Leagues');
             }
         });

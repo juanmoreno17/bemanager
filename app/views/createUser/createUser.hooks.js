@@ -2,10 +2,10 @@ import { useApiMutation } from '../../api/hooks';
 import { createUser } from '../../api/urls/users';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { useMyContext } from '../../hooks/myContext';
+import { useUserContext } from '../../hooks/userContext';
 
 export const useCreateUser = () => {
-    const { setUser } = useMyContext();
+    const { setUser } = useUserContext();
     const navigation = useNavigation();
 
     const { mutateAsync } = useApiMutation(
@@ -20,7 +20,7 @@ export const useCreateUser = () => {
                 auth()
                     .signInWithEmailAndPassword(usr.email, usr.password)
                     .then((user) => {
-                        console.log({ user, usr });
+                        //console.log({ user, usr });
                         setUser(user.user);
                         navigation.navigate('Leagues');
                     })

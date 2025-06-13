@@ -3,6 +3,8 @@ import { Image, Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
+import { styles } from './stack.styles';
 
 //Screen
 import Routes from './stackRoutes';
@@ -13,9 +15,21 @@ import logout from '../assets/icons/logout.png';
 
 const Stack = createStackNavigator();
 
-const getButton = ({ navigation }) => (
+const changeLeague = ({ navigation }) => (
     <TouchableOpacity
-        style={{ flexDirection: 'row', marginRight: 10 }}
+        style={styles.button}
+        onPress={() => {
+            navigation.navigate('Leagues');
+        }}
+    >
+        <MaterialDesignIcons name="swap-horizontal" size={21} color="#FFFFFF" />
+        <Text style={styles.text}>Cambiar Liga</Text>
+    </TouchableOpacity>
+);
+
+const logOut = ({ navigation }) => (
+    <TouchableOpacity
+        style={styles.button}
         onPress={() => {
             auth()
                 .signOut()
@@ -24,17 +38,8 @@ const getButton = ({ navigation }) => (
                 });
         }}
     >
-        <Image
-            source={logout}
-            style={{
-                width: 15,
-                height: 15,
-                tintColor: '#FFFFFF',
-                marginRight: 5,
-                marginTop: 3,
-            }}
-        />
-        <Text style={{ color: '#FFFFFF' }}>Cerrar sesión</Text>
+        <Image source={logout} style={styles.img} />
+        <Text style={styles.text}>Cerrar sesión</Text>
     </TouchableOpacity>
 );
 
@@ -65,7 +70,7 @@ export const AppStack = () => {
                             fontWeight: 'bold',
                         },
                         headerTitleAlign: 'center',
-                        headerRight: () => getButton(nav),
+                        headerRight: () => logOut(nav),
                         headerLeft: () => null,
                     })}
                 />
@@ -82,8 +87,8 @@ export const AppStack = () => {
                             fontWeight: 'bold',
                         },
                         headerTitleAlign: 'center',
-                        headerRight: () => getButton(nav),
-                        headerLeft: () => null,
+                        headerRight: () => logOut(nav),
+                        headerLeft: () => changeLeague(nav),
                     })}
                 />
             </Stack.Navigator>

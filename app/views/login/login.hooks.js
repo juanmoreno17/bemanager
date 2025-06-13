@@ -1,9 +1,9 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { useMyContext } from '../../hooks/myContext';
+import { useUserContext } from '../../hooks/userContext';
 
 export const useLogin = () => {
-    const { setUser } = useMyContext();
+    const { setUser } = useUserContext();
     const navigation = useNavigation();
 
     const onSubmit = (Email, Password, cleanStates) => {

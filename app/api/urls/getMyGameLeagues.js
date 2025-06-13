@@ -1,3 +1,4 @@
 import { request } from '../base';
 
-export const getMyGameLeagues = () => request({ url: '/getMyGameLeagues', method: 'GET' });
+export const getMyGameLeagues = (idUsuario) =>
+    request({ url: '/getMyGameLeagues', method: 'POST', data: { idUsuario } });
