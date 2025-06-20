@@ -3,11 +3,12 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#52C1CA',
-        height: 45,
-        width: '100%',
+        //height: 45,
+        //width: '100%',
         marginTop: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 10,
     },
     title: {
         color: '#FFFFFF',

@@ -7,4 +7,16 @@ export const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 30,
     },
+    render: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#52C1CA',
+        padding: 10,
+        marginVertical: 5,
+    },
+    text: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });

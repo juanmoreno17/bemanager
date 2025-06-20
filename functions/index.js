@@ -22,6 +22,9 @@ const getMyGameLeagues = require('./getMyGameLeagues');
 const getGameLeagues = require('./getGameLeagues');
 const joinGameLeague = require('./joinGameLeague');
 const example2 = require('./example2');
+const getTeams = require('./getTeams');
+const getPlayers = require('./getPlayers');
+const getStandings = require('./getStandings');
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -48,3 +51,6 @@ exports.getMyGameLeagues = onRequest(getMyGameLeagues(db));
 exports.getGameLeagues = onRequest(getGameLeagues(db));
 exports.joinGameLeague = onRequest(joinGameLeague(db));
 exports.example2 = onRequest(example2(db));
+exports.getTeams = onRequest(getTeams(db));
+exports.getPlayers = onRequest(getPlayers(db));
+exports.getStandings = onRequest(getStandings(db));

@@ -44,37 +44,40 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.subcontainer}>
-                <Image source={icono} style={styles.img} />
-            </View>
-            <View style={styles.subcontainer}>
-                <Input
-                    title="Email"
-                    custom={{
-                        value: Email,
-                        onChangeText: (em) => setEmail(em),
+            <Image source={icono} style={styles.img} />
+            <Input
+                title="Email"
+                custom={{
+                    value: Email,
+                    onChangeText: (em) => setEmail(em),
+                }}
+            />
+            <Input
+                title="Password"
+                custom={{
+                    value: Password,
+                    onChangeText: (psw) => setPassword(psw),
+                    secureTextEntry: true,
+                }}
+            />
+            <Button
+                title="Login"
+                action={() => {
+                    onSubmit(Email, Password, cleanStates);
+                }}
+            />
+            <TouchableOpacity onPress={() => navigation.navigate('CreateUser')}>
+                <Text
+                    style={{
+                        color: '#52C1CA',
+                        fontWeight: 'bold',
+                        marginTop: 20,
+                        textAlign: 'center',
                     }}
-                />
-                <Input
-                    title="Password"
-                    custom={{
-                        value: Password,
-                        onChangeText: (psw) => setPassword(psw),
-                        secureTextEntry: true,
-                    }}
-                />
-                <Button
-                    title="Login"
-                    action={() => {
-                        onSubmit(Email, Password, cleanStates);
-                    }}
-                />
-                <TouchableOpacity onPress={() => navigation.navigate('CreateUser')}>
-                    <Text style={{ color: '#52C1CA', fontWeight: 'bold', marginTop: 20 }}>
-                        Create an Account
-                    </Text>
-                </TouchableOpacity>
-            </View>
+                >
+                    Create an Account
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 };

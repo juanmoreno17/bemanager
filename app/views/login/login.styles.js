@@ -7,11 +7,6 @@ export const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 30,
     },
-    subcontainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     img: {
         marginTop: 100,
         width: 350,
