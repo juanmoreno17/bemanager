@@ -6,7 +6,7 @@ const data = [
         nombre: 'Sergio Herrera',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596198/Jugadores/Osasuna/herrera_ggvbux.png',
         posicion: 'Portero',
-        valor: '4.000.000 €',
+        valor: 4000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -17,7 +17,7 @@ const data = [
         nombre: 'Aitor Fernández',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596197/Jugadores/Osasuna/aitor_gnb3hc.png',
         posicion: 'Portero',
-        valor: '1.500.000 €',
+        valor: 1500000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -28,7 +28,7 @@ const data = [
         nombre: 'Enzo Boyomo',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596196/Jugadores/Osasuna/boyomo_s31zgy.png',
         posicion: 'Defensa',
-        valor: '20.000.000 €',
+        valor: 20000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -39,7 +39,7 @@ const data = [
         nombre: 'Jorge Herrando',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596196/Jugadores/Osasuna/herrando_xs8ofh.png',
         posicion: 'Defensa',
-        valor: '4.000.000 €',
+        valor: 4000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -50,7 +50,7 @@ const data = [
         nombre: 'Alejandro Catena',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596195/Jugadores/Osasuna/catena_wsxojv.png',
         posicion: 'Defensa',
-        valor: '4.000.000 €',
+        valor: 4000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -61,7 +61,7 @@ const data = [
         nombre: 'Unai García',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596194/Jugadores/Osasuna/unaigar_e3rg60.png',
         posicion: 'Defensa',
-        valor: '1.000.000 €',
+        valor: 1000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -72,7 +72,7 @@ const data = [
         nombre: 'Abel Bretones',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596194/Jugadores/Osasuna/bretones_m3s26u.png',
         posicion: 'Defensa',
-        valor: '3.000.000 €',
+        valor: 3000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -83,7 +83,7 @@ const data = [
         nombre: 'Juan Cruz',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596193/Jugadores/Osasuna/juancruz_qvkohc.png',
         posicion: 'Defensa',
-        valor: '1.800.000 €',
+        valor: 1800000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -94,7 +94,7 @@ const data = [
         nombre: 'Jesús Areso',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596193/Jugadores/Osasuna/areso_dukbip.png',
         posicion: 'Defensa',
-        valor: '8.000.000 €',
+        valor: 8000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -105,7 +105,7 @@ const data = [
         nombre: 'Rubén Peña',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596192/Jugadores/Osasuna/pe%C3%B1a_xns7k0.png',
         posicion: 'Defensa',
-        valor: '1.800.000 €',
+        valor: 1800000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -116,7 +116,7 @@ const data = [
         nombre: 'Lucas Torró',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596191/Jugadores/Osasuna/torro_awppys.png',
         posicion: 'Mediocampista',
-        valor: '3.500.000 €',
+        valor: 3500000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -127,7 +127,7 @@ const data = [
         nombre: 'Iker Muñoz',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596190/Jugadores/Osasuna/ikermu%C3%B1oz_p2veii.png',
         posicion: 'Mediocampista',
-        valor: '3.000.000 €',
+        valor: 3000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -138,7 +138,7 @@ const data = [
         nombre: 'Jon Moncayola',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596191/Jugadores/Osasuna/monca_bfhdki.png',
         posicion: 'Mediocampista',
-        valor: '7.000.000 €',
+        valor: 7000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -149,7 +149,7 @@ const data = [
         nombre: 'Pablo Ibáñez',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596190/Jugadores/Osasuna/iba%C3%B1ez_r8wxze.png',
         posicion: 'Mediocampista',
-        valor: '2.300.000 €',
+        valor: 2300000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -160,7 +160,7 @@ const data = [
         nombre: 'Aimar Oroz',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596189/Jugadores/Osasuna/oroz_yetlff.png',
         posicion: 'Mediocampista',
-        valor: '15.000.000 €',
+        valor: 15000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -171,7 +171,7 @@ const data = [
         nombre: 'Bryan Zaragoza',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596189/Jugadores/Osasuna/bryanzara_sqtvik.png',
         posicion: 'Delantero',
-        valor: '12.000.000 €',
+        valor: 12000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -182,7 +182,7 @@ const data = [
         nombre: 'Moi Gómez',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596188/Jugadores/Osasuna/moi_sy5d5y.png',
         posicion: 'Delantero',
-        valor: '3.000.000 €',
+        valor: 3000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -193,7 +193,7 @@ const data = [
         nombre: 'José Manuel Arnáiz',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596201/Jugadores/Osasuna/arnaiz_lbjag8.png',
         posicion: 'Delantero',
-        valor: '1.800.000 €',
+        valor: 1800000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -204,7 +204,7 @@ const data = [
         nombre: 'Ruben García',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596201/Jugadores/Osasuna/ruben_b6z6pa.png',
         posicion: 'Delantero',
-        valor: '2.000.000 €',
+        valor: 2000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -215,7 +215,7 @@ const data = [
         nombre: 'Kike Barja',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596200/Jugadores/Osasuna/barja_kt74jn.png',
         posicion: 'Delantero',
-        valor: '1.800.000 €',
+        valor: 1800000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -226,7 +226,7 @@ const data = [
         nombre: 'Ante Budimir',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596199/Jugadores/Osasuna/ante_lhgo6w.png',
         posicion: 'Delantero',
-        valor: '5.000.000 €',
+        valor: 5000000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:
@@ -237,7 +237,7 @@ const data = [
         nombre: 'Raúl García',
         foto: 'https://res.cloudinary.com/daskrmb6s/image/upload/v1743596198/Jugadores/Osasuna/raulgar_ww5fp1.png',
         posicion: 'Delantero',
-        valor: '3.500.000 €',
+        valor: 3500000,
         puntuacion: 0,
         estado: 'Disponible',
         escudoEquipo:

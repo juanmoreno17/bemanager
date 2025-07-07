@@ -23,38 +23,39 @@ export const Standings = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Button
-                    title="Jornada"
-                    action={async () => {
-                        //setItemList([]);
-                        setOrderFlag('parcial');
-                        const { data: standingsData } = await refetchStandings();
-                        setItemList(standingsData?.data);
-                    }}
-                />
-                <Button
-                    title="Total"
-                    action={async () => {
-                        //setItemList([]);
-                        setOrderFlag('total');
-                        const { data: standingsData } = await refetchStandings();
-                        setItemList(standingsData?.data);
-                    }}
+            <Button
+                title="Jornada"
+                action={async () => {
+                    setItemList([]);
+                    setOrderFlag('parcial');
+                    const { data: standingsData } = await refetchStandings();
+                    setItemList(standingsData?.data);
+                }}
+            />
+            <Button
+                title="Total"
+                action={async () => {
+                    setItemList([]);
+                    setOrderFlag('total');
+                    const { data: standingsData } = await refetchStandings();
+                    setItemList(standingsData?.data);
+                }}
+            />
+            <View style={styles.header}>
+                <FlatList
+                    data={itemList}
+                    keyExtractor={(item) => item.idUsuario}
+                    renderItem={({ item }) => (
+                        <View key={item.idUsuario} style={styles.render}>
+                            <Text style={styles.text}>{item.nombreUsuario}</Text>
+                            <Text style={styles.text}>
+                                {orderFlag === 'parcial' ? item.puntuacion : item.puntuacionTotal}{' '}
+                                puntos
+                            </Text>
+                        </View>
+                    )}
                 />
             </View>
-            <FlatList
-                data={itemList}
-                keyExtractor={(item) => item.idUsuario}
-                renderItem={({ item }) => (
-                    <View key={item.idUsuario} style={styles.render}>
-                        <Text style={styles.text}>{item.nombreUsuario}</Text>
-                        <Text style={styles.text}>
-                            {orderFlag === 'parcial' ? item.puntuacion : item.puntuacionTotal}
-                        </Text>
-                    </View>
-                )}
-            />
         </View>
     );
 };

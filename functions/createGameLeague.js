@@ -70,16 +70,3 @@ module.exports = function (db) {
             .catch((error) => res.status(501).send({ err: 'Algo salio mal', error }));
     };
 };
-
-/*return client.messages
-    .create({
-        body: `El código para entrar en tu liga es ${codLiga}`,
-        from: '+14155238886',
-        to: phoneNumber,
-    })
-    .then(() => res.status(200).send({ data: league }))
-    .catch((error) => {
-        console.error('Error al enviar el mensaje:', error);
-    });*/
-
-//res.status(200).send({ data: league })
