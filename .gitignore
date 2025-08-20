@@ -66,3 +66,4 @@ yarn-error.log
 /coverage
 /android/app/google-services.json
 /functions/config/bemanager-ecf7e-firebase-adminsdk-fbsvc-2e28046f0b.json
+/app/utils/config/config.js

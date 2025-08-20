@@ -1,9 +1,8 @@
-const { FieldPath } = require('firebase-admin/firestore');
-
 module.exports = function (db) {
     return function (req, res) {
-        const { idLiga, lastVisible } = req.body;
+        const { idLiga, idEquipo } = req.body;
         if (!idLiga) return res.status(404).send({ err: 'No se ha enviado un id de liga' });
+        if (!idEquipo) return res.status(404).send({ err: 'No se ha enviado un id de equipo' });
         return db
             .collection('Ligas')
             .where('idLiga', '==', idLiga)
@@ -13,47 +12,36 @@ module.exports = function (db) {
                 querySnapshot.forEach((i) => {
                     id = i.id;
                 });
-                const leagueRef = db.collection('Ligas').doc(id);
-                let query = db
-                    .collectionGroup('Jugadores')
-                    .orderBy(FieldPath.documentId())
-                    .startAt(leagueRef.path)
-                    .endAt(leagueRef.path + '\uf8ff')
-                    .limit(20);
-                if (lastVisible) {
-                    return db
-                        .doc(lastVisible)
-                        .get()
-                        .then((doc) => {
-                            if (doc.exists) {
-                                query = query.startAfter(doc);
-                            }
-                            return query.get();
+                return db
+                    .collection(`Ligas`)
+                    .doc(id)
+                    .collection('Equipos')
+                    .where('idEquipo', '==', idEquipo)
+                    .get()
+                    .then((querySnapshot) => {
+                        let id2 = 0;
+                        querySnapshot.forEach((i) => {
+                            id2 = i.id;
                         });
-                }
-                return query.get();
-            })
-            .then((playersSnapshot) => {
-                const players = [];
-                let newLastVisible = null;
-                playersSnapshot.forEach((playerDoc) => {
-                    players.push(playerDoc.data());
-                    newLastVisible = playerDoc;
-                });
-                console.log('Response sent:', {
-                    data: players,
-                    lastVisible: newLastVisible ? newLastVisible.id : null,
-                });
-                return res.status(200).send({
-                    data: players.length > 0 ? players : [],
-                    lastVisible: newLastVisible ? newLastVisible.ref.path : null,
-                });
+                        return db
+                            .collection(`Ligas`)
+                            .doc(id)
+                            .collection('Equipos')
+                            .doc(id2)
+                            .collection('Jugadores')
+                            .get()
+                            .then((playersSnapshot) => {
+                                const allPlayers = [];
+                                playersSnapshot.forEach((i) => {
+                                    allPlayers.push(i.data());
+                                });
+                                allPlayers.sort((a, b) => b.puntuacionTotal - a.puntuacionTotal);
+                                return res.status(200).send({ data: allPlayers });
+                            });
+                    });
             })
             .catch((error) =>
-                res.status(501).send({
-                    err: 'No se encontró un documento con ese idLiga',
-                    error: error.message,
-                }),
+                res.status(501).send({ err: 'No se encontró un documento con ese idLiga', error }),
             );
     };
 };

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         paddingVertical: 20,
         paddingHorizontal: 30,
-        marginBottom: 80,
+        marginBottom: 107,
     },
     text2: {
         fontSize: 20,
@@ -18,6 +18,11 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
     },
     errorLabel: {
+        color: 'red',
+        fontWeight: 'bold',
+        marginTop: 5,
+    },
+    warning: {
         color: 'red',
         fontWeight: 'bold',
         marginTop: 5,

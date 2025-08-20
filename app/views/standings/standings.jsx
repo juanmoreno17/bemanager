@@ -9,6 +9,7 @@ import { Button } from '../../components/button';
 export const Standings = () => {
     const [itemList, setItemList] = useState([]);
     const [orderFlag, setOrderFlag] = useState('');
+    const [title, setTitle] = useState('');
     const { myGameLeague } = useGameLeagueContext();
 
     const { isLoading: standingsLoading, refetch: refetchStandings } = useApiQuery(
@@ -26,8 +27,11 @@ export const Standings = () => {
             <Button
                 title="Jornada"
                 action={async () => {
-                    setItemList([]);
-                    setOrderFlag('parcial');
+                    await new Promise((resolve) => {
+                        setOrderFlag('parcial');
+                        resolve();
+                    });
+                    setTitle('Clasificación Jornada');
                     const { data: standingsData } = await refetchStandings();
                     setItemList(standingsData?.data);
                 }}
@@ -35,13 +39,17 @@ export const Standings = () => {
             <Button
                 title="Total"
                 action={async () => {
-                    setItemList([]);
-                    setOrderFlag('total');
+                    await new Promise((resolve) => {
+                        setOrderFlag('total');
+                        resolve();
+                    });
+                    setTitle('Clasificación Total');
                     const { data: standingsData } = await refetchStandings();
                     setItemList(standingsData?.data);
                 }}
             />
             <View style={styles.header}>
+                <Text style={styles.text2}>{title}</Text>
                 <FlatList
                     data={itemList}
                     keyExtractor={(item) => item.idUsuario}
@@ -49,7 +57,10 @@ export const Standings = () => {
                         <View key={item.idUsuario} style={styles.render}>
                             <Text style={styles.text}>{item.nombreUsuario}</Text>
                             <Text style={styles.text}>
-                                {orderFlag === 'parcial' ? item.puntuacion : item.puntuacionTotal}{' '}
+                                {(orderFlag === 'parcial'
+                                    ? item.puntuacion
+                                    : item.puntuacionTotal
+                                ).toLocaleString('es-ES', { minimumFractionDigits: 1 })}{' '}
                                 puntos
                             </Text>
                         </View>

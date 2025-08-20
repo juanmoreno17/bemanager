@@ -20,6 +20,7 @@ module.exports = function (db) {
                     .get()
                     .then((docSnapshot) => {
                         const data = docSnapshot.data();
+                        const jugadoresSinPuntuar = data?.jugadoresSinPuntuar || [];
                         if (data?.estado === 'abierta') {
                             return res.status(200).send({
                                 message: 'La liga aún no ha comenzado',
@@ -71,9 +72,9 @@ module.exports = function (db) {
                                                     allPlayers.push(playerDoc.data());
                                                 });
                                                 gamePlayers.forEach((gamePlayer) => {
-                                                    const { plantilla, presupuesto } = gamePlayer;
+                                                    const { plantilla, idUsuario } = gamePlayer;
 
-                                                    if (presupuesto > 0) {
+                                                    if (!jugadoresSinPuntuar.includes(idUsuario)) {
                                                         let puntuacion = 0;
 
                                                         // Sumar las puntuaciones de los jugadores que coincidan con la plantilla

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList, Text, Alert } from 'react-native';
 import { useGameLeagueContext } from '../../hooks/gameLeagueContext';
 import { useUserContext } from '../../hooks/userContext';
 import { useApiQuery } from '../../api/hooks';
@@ -22,6 +22,7 @@ export const TransferMarket = () => {
     const [bid, setBid] = useState('');
     const [errors, setErrors] = useState({ bid: '' });
     const [view, setView] = useState(false);
+    const [timeLeft, setTimeLeft] = useState('');
 
     const {
         data: budgetData,
@@ -49,12 +50,32 @@ export const TransferMarket = () => {
         React.useCallback(() => {
             refetchBudget();
             refetchMarket();
-        }, []),
+        }, [refetchBudget, refetchMarket]),
     );
 
-    if (budgetLoading || marketLoading) {
-        return null;
-    }
+    useEffect(() => {
+        if (!marketData?.fechaActualizacion) return;
+        const updateTimeLeft = () => {
+            const nextUpdate = new Date(marketData.fechaActualizacion);
+            nextUpdate.setHours(nextUpdate.getHours() + 24); // Sumar 24 horas a la fecha de actualización
+            const now = new Date();
+            const difference = nextUpdate - now;
+
+            if (difference > 0) {
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / (1000 * 60)) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+                setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+            } else {
+                setTimeLeft('Actualización en curso...');
+            }
+        };
+
+        updateTimeLeft();
+        const interval = setInterval(updateTimeLeft, 1000);
+
+        return () => clearInterval(interval);
+    }, [marketData?.fechaActualizacion]);
 
     const cleanStates = () => {
         setErrors({ bid: '' });
@@ -63,6 +84,10 @@ export const TransferMarket = () => {
         setPlayerValue(0);
         setBid('');
     };
+
+    if (budgetLoading || marketLoading) {
+        return null;
+    }
 
     return (
         <View style={styles.container}>
@@ -76,6 +101,7 @@ export const TransferMarket = () => {
                         puntuarás
                     </Text>
                 )}
+                <Text style={styles.text2}>Próxima actualización del mercado en: {timeLeft}</Text>
             </View>
             <FlatList
                 data={marketData.data}
@@ -83,6 +109,8 @@ export const TransferMarket = () => {
                 renderItem={({ item }) => (
                     <PlayerItem
                         item={item}
+                        showTouchable={true}
+                        disabled={timeLeft === 'Actualización en curso...'}
                         action={() => {
                             setPlayerId(item.idJugador);
                             setPlayerValue(item.valor);
@@ -138,7 +166,7 @@ export const TransferMarket = () => {
                             makeBidFn(playerBid, {
                                 onSuccess: (res) => {
                                     if (res?.message) {
-                                        alert(res.message);
+                                        Alert.alert('', res.message);
                                     } else {
                                         cleanStates();
                                     }

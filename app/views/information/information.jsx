@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { styles } from './information.styles';
 import { useGameLeagueContext } from '../../hooks/gameLeagueContext';
 import { useApiQuery } from '../../api/hooks';
+import { useApiMutation } from '../../api/hooks';
 import { getPlayers } from '../../api/urls/getPlayers';
 import { getTeams } from '../../api/urls/getTeams';
-import { Button } from '../../components/button';
 import { ModalCustom } from '../../components/modal';
 import { useInformation } from './information.hooks';
+import { PlayerItem } from '../../components/playerItem';
 
 export const Information = () => {
     const [itemList, setItemList] = useState([]);
     const { myGameLeague } = useGameLeagueContext();
-    const [lastVisible, setLastVisible] = useState(null);
     const [view, setView] = useState(false);
-    const [view2, setView2] = useState(false);
 
-    const { loadPlayers, renderTeams, renderPlayers } = useInformation();
+    const { renderTeams } = useInformation();
 
-    const { isLoading: playersLoading, refetch: refetchPlayers } = useApiQuery(
-        ['getPlayers', myGameLeague.idLiga, lastVisible],
-        () => getPlayers(myGameLeague.idLiga, lastVisible),
-        { enabled: false },
+    const { mutateAsync: getTeamPlayers } = useApiMutation(
+        getPlayers,
+        () => console.log('Players refetched'),
+        (err) => console.error({ err }),
     );
 
     const { data: teamsData, isLoading: teamsLoading } = useApiQuery(
@@ -31,31 +30,35 @@ export const Information = () => {
 
     if (teamsLoading) return null; // or a loading indicator
 
+    const cleanStates = () => {
+        setItemList([]);
+        setView(false);
+    };
+
     return (
         <View style={styles.container}>
-            <Button
-                title="Jugadores"
-                action={() => {
-                    loadPlayers(refetchPlayers, setItemList, setLastVisible);
-                    setView(true);
-                }}
+            <FlatList
+                data={teamsData.data}
+                keyExtractor={(item) => item.idEquipo}
+                renderItem={({ item }) =>
+                    renderTeams({
+                        item,
+                        action: async () => {
+                            const response = await getTeamPlayers({
+                                idLiga: myGameLeague.idLiga,
+                                idEquipo: item.idEquipo,
+                            });
+                            setItemList(response.data);
+                            setView(true);
+                        },
+                    })
+                }
             />
-            <Button title="Equipos" action={() => setView2(true)} />
-            <ModalCustom visible={view2} onClose={() => setView2(false)}>
-                <FlatList
-                    data={teamsData.data}
-                    keyExtractor={(item) => item.idEquipo}
-                    renderItem={(item) => renderTeams(item)}
-                />
-            </ModalCustom>
-            <ModalCustom visible={view} onClose={() => setView(false)}>
+            <ModalCustom visible={view} onClose={() => cleanStates()}>
                 <FlatList
                     data={itemList}
                     keyExtractor={(item) => item.idJugador}
-                    renderItem={(item) => renderPlayers(item)}
-                    onEndReached={() => loadPlayers(refetchPlayers, setItemList, setLastVisible)}
-                    onEndReachedThreshold={0.5}
-                    ListFooterComponent={playersLoading ? <Text>Cargando...</Text> : null}
+                    renderItem={({ item }) => <PlayerItem item={item} />}
                 />
             </ModalCustom>
         </View>

@@ -15,6 +15,7 @@ module.exports = function (db) {
                     .collection(`Ligas`)
                     .doc(id)
                     .collection('Equipos')
+                    .orderBy('nombre')
                     .get()
                     .then((querySnapshot) => {
                         const data = [];

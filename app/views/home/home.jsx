@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { styles } from './home.styles';
 import { useUserContext } from '../../hooks/userContext';
 import { useGameLeagueContext } from '../../hooks/gameLeagueContext';
@@ -63,7 +63,7 @@ export const Home = () => {
                             startGameLeagueFn(leagueStarted, {
                                 onSuccess: (res) => {
                                     if (res?.message) {
-                                        alert(res.message);
+                                        Alert.alert('', res.message);
                                     }
                                 },
                             });
@@ -79,12 +79,12 @@ export const Home = () => {
                             resolveBidsFn(myGameLeague.idLigaJuego, {
                                 onSuccess: (res) => {
                                     if (res?.message) {
-                                        alert(res.message);
+                                        Alert.alert('', res.message);
                                     } else {
                                         updateMarketFn(marketUpdated, {
                                             onSuccess: (res) => {
                                                 if (res?.message) {
-                                                    alert(res.message);
+                                                    Alert.alert('', res.message);
                                                 }
                                             },
                                         });
@@ -103,7 +103,7 @@ export const Home = () => {
                             updateStandingsFn(leagueUpdated, {
                                 onSuccess: (res) => {
                                     if (res?.message) {
-                                        alert(res.message);
+                                        Alert.alert('', res.message);
                                     } else {
                                         distributeRewardsFn(myGameLeague.idLigaJuego);
                                     }

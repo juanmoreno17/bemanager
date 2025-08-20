@@ -1,4 +1,5 @@
 import CryptoES from 'crypto-es';
+import config from './config/config';
 
 export function UploadFile(file) {
     const uri = file.assets[0].uri;
@@ -7,8 +8,8 @@ export function UploadFile(file) {
 
     const photo = { uri, type, name };
     const ts = Math.round(new Date().getTime() / 1000);
-    const apiKey = '142991427961933';
-    const apiSecret = 'zRCNJRhAf3otiBqlWe-d5lEJD-c';
+    const apiKey = config.CLOUDINARY_API_KEY;
+    const apiSecret = config.CLOUDINARY_API_SECRET;
     const hash = `timestamp=${ts}${apiSecret}`;
     const signature = CryptoES.SHA1(hash).toString();
     const url = 'https://api.cloudinary.com/v1_1/daskrmb6s/image/upload';

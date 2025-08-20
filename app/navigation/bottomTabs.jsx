@@ -17,6 +17,7 @@ export default function BottomTabs() {
                     tabBarLabel: 'Inicio',
                     tabBarLabelStyle: { fontSize: 14, color: '#52C1CA' },
                     tabBarIcon: () => <MaterialDesignIcons name="home" size={24} color="#52C1CA" />,
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -28,6 +29,7 @@ export default function BottomTabs() {
                     tabBarIcon: () => (
                         <MaterialDesignIcons name="transit-transfer" size={24} color="#52C1CA" />
                     ),
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -39,6 +41,7 @@ export default function BottomTabs() {
                     tabBarIcon: () => (
                         <MaterialDesignIcons name="soccer-field" size={24} color="#52C1CA" />
                     ),
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -50,6 +53,7 @@ export default function BottomTabs() {
                     tabBarIcon: () => (
                         <MaterialDesignIcons name="trophy" size={24} color="#52C1CA" />
                     ),
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -61,6 +65,7 @@ export default function BottomTabs() {
                     tabBarIcon: () => (
                         <MaterialDesignIcons name="information-outline" size={24} color="#52C1CA" />
                     ),
+                    headerShown: false,
                 }}
             />
         </Tab.Navigator>

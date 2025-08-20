@@ -16,10 +16,38 @@ module.exports = function (db) {
                 }
                 querySnapshot.forEach((doc) => {
                     const id = doc.id;
-                    return db.collection('LigasJuego').doc(id).update({
-                        estadoJornada: 'en curso',
-                        clasificacionActualizada: false,
-                    });
+                    return db
+                        .collection('LigasJuego')
+                        .doc(id)
+                        .collection('Jugadores')
+                        .get()
+                        .then((querySnapshot) => {
+                            const batch = db.batch();
+                            querySnapshot.forEach((doc) => {
+                                const jugadorRef = doc.ref;
+                                batch.update(jugadorRef, { puntuacion: 0 }); // Actualiza el campo puntuacion
+                            });
+                            return batch.commit(); // Ejecuta las actualizaciones en lote
+                        })
+                        .then(() => {
+                            return db
+                                .collection('LigasJuego')
+                                .doc(id)
+                                .collection('Jugadores')
+                                .where('presupuesto', '<', 0)
+                                .get()
+                                .then((querySnapshot) => {
+                                    const jugadoresSinPuntuar = [];
+                                    querySnapshot.forEach((doc) => {
+                                        jugadoresSinPuntuar.push(doc.data().idUsuario);
+                                    });
+                                    return db.collection('LigasJuego').doc(id).update({
+                                        estadoJornada: 'en curso',
+                                        clasificacionActualizada: false,
+                                        jugadoresSinPuntuar,
+                                    });
+                                });
+                        });
                 });
                 return db
                     .collection('Ligas')

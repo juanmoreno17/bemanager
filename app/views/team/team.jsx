@@ -67,8 +67,9 @@ export const Team = () => {
                 renderItem={({ item }) => (
                     <PlayerItem
                         item={item}
+                        showSellButton={true}
                         action={() => {
-                            Alert.alert('Alert', '¿Seguro que quieres vender a este jugador?', [
+                            Alert.alert('', '¿Seguro que quieres vender a este jugador?', [
                                 {
                                     text: 'Si',
                                     onPress: () => {

@@ -62,6 +62,15 @@ module.exports = function (db) {
                                                 allPlayers.push(
                                                     ...filteredPlayers.map((doc) => doc.data()),
                                                 );
+                                                allPlayers.sort((a, b) => {
+                                                    const order = {
+                                                        Portero: 0,
+                                                        Defensa: 1,
+                                                        Mediocampista: 2,
+                                                        Delantero: 3,
+                                                    };
+                                                    return order[a.posicion] - order[b.posicion];
+                                                });
                                                 return res.status(200).send({
                                                     data: allPlayers,
                                                 });

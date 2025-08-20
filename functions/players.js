@@ -8,6 +8,7 @@ const data = [
         posicion: 'Portero',
         valor: 4000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -19,6 +20,7 @@ const data = [
         posicion: 'Portero',
         valor: 1500000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -30,6 +32,7 @@ const data = [
         posicion: 'Defensa',
         valor: 20000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -41,6 +44,7 @@ const data = [
         posicion: 'Defensa',
         valor: 4000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -52,6 +56,7 @@ const data = [
         posicion: 'Defensa',
         valor: 4000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -63,6 +68,7 @@ const data = [
         posicion: 'Defensa',
         valor: 1000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -74,6 +80,7 @@ const data = [
         posicion: 'Defensa',
         valor: 3000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -85,6 +92,7 @@ const data = [
         posicion: 'Defensa',
         valor: 1800000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -96,6 +104,7 @@ const data = [
         posicion: 'Defensa',
         valor: 8000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -107,6 +116,7 @@ const data = [
         posicion: 'Defensa',
         valor: 1800000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -118,6 +128,7 @@ const data = [
         posicion: 'Mediocampista',
         valor: 3500000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -129,6 +140,7 @@ const data = [
         posicion: 'Mediocampista',
         valor: 3000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -140,6 +152,7 @@ const data = [
         posicion: 'Mediocampista',
         valor: 7000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -151,6 +164,7 @@ const data = [
         posicion: 'Mediocampista',
         valor: 2300000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -162,6 +176,7 @@ const data = [
         posicion: 'Mediocampista',
         valor: 15000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -173,6 +188,7 @@ const data = [
         posicion: 'Delantero',
         valor: 12000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -184,6 +200,7 @@ const data = [
         posicion: 'Delantero',
         valor: 3000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -195,6 +212,7 @@ const data = [
         posicion: 'Delantero',
         valor: 1800000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -206,6 +224,7 @@ const data = [
         posicion: 'Delantero',
         valor: 2000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -217,6 +236,7 @@ const data = [
         posicion: 'Delantero',
         valor: 1800000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -228,6 +248,7 @@ const data = [
         posicion: 'Delantero',
         valor: 5000000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',
@@ -239,6 +260,7 @@ const data = [
         posicion: 'Delantero',
         valor: 3500000,
         puntuacion: 0,
+        puntuacionTotal: 0,
         estado: 'Disponible',
         escudoEquipo:
             'https://res.cloudinary.com/daskrmb6s/image/upload/v1741905965/Equipos/ucqtmqwgm8cfxxqgqdvl.png',

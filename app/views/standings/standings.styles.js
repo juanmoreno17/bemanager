@@ -17,6 +17,11 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    text2: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#52C1CA',
+    },
     header: {
         fontSize: 20,
         fontWeight: 'bold',

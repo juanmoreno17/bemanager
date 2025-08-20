@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 25,
     },
+    text2: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#52C1CA',
+    },
     image1: {
         width: 50,
         height: 50,
@@ -37,6 +43,7 @@ export const styles = StyleSheet.create({
         width: '45%',
     },
     renderContainer3: {
-        padding: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
 });

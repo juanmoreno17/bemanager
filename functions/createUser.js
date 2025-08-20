@@ -1,7 +1,6 @@
 const { getAuth } = require('firebase-admin/auth');
 
 module.exports = function (req, res) {
-    //res.status(200).send(req.body);
     const { email, phoneNumber, password, displayName, photoURL } = req.body;
     // validar campos
     if (!email) return res.status(404).send({ err: 'No se ha enviado un email' });
@@ -21,5 +20,4 @@ module.exports = function (req, res) {
         })
         .then((usr) => res.status(200).send(usr))
         .catch((error) => res.status(501).send({ err: 'Algo salio mal', error }));
-    // retorno de informacion
 };

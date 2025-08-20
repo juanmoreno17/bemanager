@@ -17,44 +17,64 @@ module.exports = function (db) {
                 return db
                     .collection('LigasJuego')
                     .doc(id)
-                    .collection('Mercado')
                     .get()
-                    .then((querySnapshot) => {
-                        const marketPlayersIds = [];
-                        querySnapshot.forEach((i) => {
-                            const data = i.data();
-                            marketPlayersIds.push(data.idJugador);
-                        });
+                    .then((doc) => {
+                        const ligaJuegoData = doc.data();
+                        const fechaActualizacion = ligaJuegoData.fechaActualizacion.toDate();
                         return db
-                            .collection('Ligas')
-                            .where('idLiga', '==', idLiga)
+                            .collection('LigasJuego')
+                            .doc(id)
+                            .collection('Mercado')
                             .get()
                             .then((querySnapshot) => {
-                                let id2 = 0;
+                                const marketPlayersIds = [];
                                 querySnapshot.forEach((i) => {
-                                    id2 = i.id;
+                                    const data = i.data();
+                                    marketPlayersIds.push(data.idJugador);
                                 });
-                                const leagueRef = db.collection('Ligas').doc(id2);
                                 return db
-                                    .collectionGroup('Jugadores')
-                                    .orderBy(FieldPath.documentId())
-                                    .startAt(leagueRef.path)
-                                    .endAt(leagueRef.path + '\uf8ff')
+                                    .collection('Ligas')
+                                    .where('idLiga', '==', idLiga)
                                     .get()
-                                    .then((playersSnapshot) => {
-                                        const allPlayers = [];
-                                        const filteredPlayers = playersSnapshot.docs.filter(
-                                            (doc) => {
-                                                const data = doc.data();
-                                                return marketPlayersIds.includes(data.idJugador);
-                                            },
-                                        );
-                                        allPlayers.push(
-                                            ...filteredPlayers.map((doc) => doc.data()),
-                                        );
-                                        return res.status(200).send({
-                                            data: allPlayers,
+                                    .then((querySnapshot) => {
+                                        let id2 = 0;
+                                        querySnapshot.forEach((i) => {
+                                            id2 = i.id;
                                         });
+                                        const leagueRef = db.collection('Ligas').doc(id2);
+                                        return db
+                                            .collectionGroup('Jugadores')
+                                            .orderBy(FieldPath.documentId())
+                                            .startAt(leagueRef.path)
+                                            .endAt(leagueRef.path + '\uf8ff')
+                                            .get()
+                                            .then((playersSnapshot) => {
+                                                const allPlayers = [];
+                                                const filteredPlayers = playersSnapshot.docs.filter(
+                                                    (doc) => {
+                                                        const data = doc.data();
+                                                        return marketPlayersIds.includes(
+                                                            data.idJugador,
+                                                        );
+                                                    },
+                                                );
+                                                allPlayers.push(
+                                                    ...filteredPlayers.map((doc) => doc.data()),
+                                                );
+                                                allPlayers.sort((a, b) => {
+                                                    const order = {
+                                                        Portero: 0,
+                                                        Defensa: 1,
+                                                        Mediocampista: 2,
+                                                        Delantero: 3,
+                                                    };
+                                                    return order[a.posicion] - order[b.posicion];
+                                                });
+                                                return res.status(200).send({
+                                                    data: allPlayers,
+                                                    fechaActualizacion,
+                                                });
+                                            });
                                     });
                             });
                     });
