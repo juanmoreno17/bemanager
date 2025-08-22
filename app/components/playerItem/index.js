@@ -25,7 +25,12 @@ export const PlayerItem = ({ item, action, showSellButton, showTouchable, disabl
     return (
         <View key={item.idJugador}>
             {showTouchable ? (
-                <TouchableOpacity onPress={action} style={styles.render} disabled={disabled}>
+                <TouchableOpacity
+                    testID="TouchableOpacity"
+                    onPress={action}
+                    style={styles.render}
+                    disabled={disabled}
+                >
                     <View>
                         <Image source={{ uri: item.escudoEquipo }} style={styles.image1} />
                         <Image source={getPositionIcon(item.posicion)} style={styles.image3} />

@@ -22,7 +22,7 @@ export function ModalCustom({
             <View style={styles.container}>
                 <View style={styles.subcontainer}>
                     <View style={styles.headerContainer}>
-                        <TouchableOpacity onPress={onClose}>
+                        <TouchableOpacity accessibilityRole="button" onPress={onClose}>
                             <Image source={close} style={styles.btnClose} />
                         </TouchableOpacity>
                     </View>

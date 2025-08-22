@@ -73,6 +73,7 @@ export const CreateUser = (props) => {
             >
                 <Image
                     source={Uri ? { uri: Uri } : userImg}
+                    testID="profile-picture"
                     style={{
                         height: 120,
                         width: 120,
@@ -123,6 +124,7 @@ export const CreateUser = (props) => {
             </ModalCustom>
             <Input
                 title="Username"
+                placeholder="Username"
                 custom={{
                     value: userName,
                     onChangeText: (name) => setUserName(name),
@@ -130,6 +132,7 @@ export const CreateUser = (props) => {
             />
             <Input
                 title="Email"
+                placeholder="Email"
                 custom={{
                     value: Email,
                     onChangeText: (em) => setEmail(em),
@@ -137,6 +140,7 @@ export const CreateUser = (props) => {
             />
             <Input
                 title="Password"
+                placeholder="Password"
                 custom={{
                     value: Password,
                     onChangeText: (psw) => setPassword(psw),
@@ -145,6 +149,7 @@ export const CreateUser = (props) => {
             />
             <Input
                 title="Phone"
+                placeholder="Phone"
                 custom={{
                     value: Phone,
                     onChangeText: (ph) => setPhone(ph),
