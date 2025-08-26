@@ -16,6 +16,7 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
     const [Email, setEmail] = useState();
     const [Password, setPassword] = useState();
     const { setUser } = useUserContext();
+    const [errors, setErrors] = useState({ Email: '', Password: '' });
 
     const navigation = useNavigation();
     const { onSubmit } = useLogin();
@@ -40,33 +41,47 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
     const cleanStates = () => {
         setEmail('');
         setPassword('');
+        setErrors({ Email: '', Password: '' });
     };
 
     return (
         <View style={styles.container}>
             <Image source={icono} style={styles.img} />
             <Input
-                title="Email"
+                title="Correo electrónico"
                 custom={{
                     value: Email,
-                    onChangeText: (em) => setEmail(em),
+                    onChangeText: (em) => {
+                        setEmail(em);
+                        setErrors((err) => ({ ...err, Email: '' }));
+                    },
                 }}
             />
+            {errors.Email ? <Text style={styles.error}>{errors.Email}</Text> : null}
             <Input
-                title="Password"
+                title="Contraseña"
                 custom={{
                     value: Password,
-                    onChangeText: (psw) => setPassword(psw),
+                    onChangeText: (pw) => {
+                        setPassword(pw);
+                        setErrors((err) => ({ ...err, Password: '' }));
+                    },
                     secureTextEntry: true,
                 }}
             />
+            {errors.Password ? <Text style={styles.error}>{errors.Password}</Text> : null}
             <Button
-                title="Login"
+                title="Iniciar sesión"
                 action={() => {
-                    onSubmit(Email, Password, cleanStates);
+                    onSubmit(Email, Password, cleanStates, setErrors);
                 }}
             />
-            <TouchableOpacity onPress={() => navigation.navigate('CreateUser')}>
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('CreateUser');
+                    cleanStates();
+                }}
+            >
                 <Text
                     style={{
                         color: '#52C1CA',
@@ -75,7 +90,7 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
                         textAlign: 'center',
                     }}
                 >
-                    Create an Account
+                    ¿No tienes cuenta? Regístrate
                 </Text>
             </TouchableOpacity>
         </View>

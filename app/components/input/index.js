@@ -8,7 +8,8 @@ export const Input = ({ title, custom, value, placeholder }) => {
             <Text style={styles.title}>{title}</Text>
             <TextInput
                 testID="text-input"
-                placeholder={placeholder}
+                placeholder={custom?.placeholder || placeholder || ''}
+                placeholderTextColor="transparent"
                 style={styles.text}
                 value={value}
                 {...custom}

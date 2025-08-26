@@ -43,18 +43,18 @@ describe('Login', () => {
         useUserContext.mockReturnValue({ setUser });
     });
 
-    it('renderiza inputs, botón Login y link "Create an Account"', () => {
+    it('renderiza inputs, botón Login y link "¿No tienes cuenta? Regístrate"', () => {
         const { getByText } = renderWithProviders(<Login />);
 
         // El mock de Input del helper renderiza el título como <Text>
-        expect(getByText('Email')).toBeTruthy();
-        expect(getByText('Password')).toBeTruthy();
+        expect(getByText('Correo electrónico')).toBeTruthy();
+        expect(getByText('Contraseña')).toBeTruthy();
 
         // Botón
-        expect(getByText('Login')).toBeTruthy();
+        expect(getByText('Iniciar sesión')).toBeTruthy();
 
         // Link
-        expect(getByText('Create an Account')).toBeTruthy();
+        expect(getByText('¿No tienes cuenta? Regístrate')).toBeTruthy();
     });
 
     it('pulsa Login y llama a onSubmit con email, password y cleanStates', () => {
@@ -66,7 +66,7 @@ describe('Login', () => {
         fireEvent.changeText(emailInput, 'test@example.com');
         fireEvent.changeText(passwordInput, 'secret123');
 
-        fireEvent.press(getByText('Login'));
+        fireEvent.press(getByText('Iniciar sesión'));
 
         expect(onSubmit).toHaveBeenCalledTimes(1);
         const [email, password, cleanStates] = onSubmit.mock.calls[0];
@@ -76,10 +76,10 @@ describe('Login', () => {
         expect(typeof cleanStates).toBe('function');
     });
 
-    it('al pulsar "Create an Account" navega a CreateUser', () => {
+    it('al pulsar "¿No tienes cuenta? Regístrate" navega a CreateUser', () => {
         const { getByText } = renderWithProviders(<Login />);
 
-        fireEvent.press(getByText('Create an Account'));
+        fireEvent.press(getByText('¿No tienes cuenta? Regístrate'));
 
         expect(mockNavigate).toHaveBeenCalledWith('CreateUser');
     });

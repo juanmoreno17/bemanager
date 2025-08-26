@@ -36,10 +36,10 @@ describe('CreateUser', () => {
         );
 
         // Rellenar inputs
-        fireEvent.changeText(getByPlaceholderText('Username'), 'Juan');
-        fireEvent.changeText(getByPlaceholderText('Email'), 'juan@mail.com');
-        fireEvent.changeText(getByPlaceholderText('Password'), '1234');
-        fireEvent.changeText(getByPlaceholderText('Phone'), '600123123');
+        fireEvent.changeText(getByPlaceholderText('Nombre de usuario'), 'Juan');
+        fireEvent.changeText(getByPlaceholderText('Correo electrónico'), 'juan@mail.com');
+        fireEvent.changeText(getByPlaceholderText('Contraseña'), '1234');
+        fireEvent.changeText(getByPlaceholderText('Teléfono'), '600123123');
 
         // Abrir el modal pulsando la imagen (tiene testID)
         fireEvent.press(getByTestId('profile-picture'));
@@ -48,7 +48,7 @@ describe('CreateUser', () => {
         fireEvent.press(await findByText('Abrir Galeria'));
 
         // Guardar
-        fireEvent.press(getByText('Save'));
+        fireEvent.press(getByText('Guardar'));
     });
 
     it('rellena el formulario, toma una foto y llama a onSubmit con photoURL', async () => {
@@ -60,21 +60,21 @@ describe('CreateUser', () => {
             <CreateUser />,
         );
 
-        fireEvent.changeText(getByPlaceholderText('Username'), 'Pepe');
-        fireEvent.changeText(getByPlaceholderText('Email'), 'pepe@mail.com');
-        fireEvent.changeText(getByPlaceholderText('Password'), '5678');
-        fireEvent.changeText(getByPlaceholderText('Phone'), '611111111');
+        fireEvent.changeText(getByPlaceholderText('Nombre de usuario'), 'Pepe');
+        fireEvent.changeText(getByPlaceholderText('Correo electrónico'), 'pepe@mail.com');
+        fireEvent.changeText(getByPlaceholderText('Contraseña'), '5678');
+        fireEvent.changeText(getByPlaceholderText('Teléfono'), '611111111');
 
         fireEvent.press(getByTestId('profile-picture'));
         fireEvent.press(await findByText('Tomar Foto'));
 
-        fireEvent.press(getByText('Save'));
+        fireEvent.press(getByText('Guardar'));
     });
 
     it('Back ejecuta navigation.goBack()', () => {
         // tu helper ya mockea useNavigation; aquí solo disparamos el onPress del TouchableOpacity
         const { getByText } = renderWithProviders(<CreateUser />);
-        const backText = getByText('Back');
+        const backText = getByText('Volver');
         // El onPress está en el TouchableOpacity padre
         fireEvent.press(backText.parent);
 

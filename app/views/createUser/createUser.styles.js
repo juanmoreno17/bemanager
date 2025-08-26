@@ -7,4 +7,9 @@ export const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 30,
     },
+    error: {
+        color: 'red',
+        fontWeight: 'bold',
+        marginTop: 5,
+    },
 });

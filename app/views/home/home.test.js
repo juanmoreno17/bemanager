@@ -70,7 +70,7 @@ describe('Home', () => {
         startGameLeagueMutate.mockImplementation((vars, opts) => {
             // comprobamos argumentos y disparamos onSuccess con message
             expect(vars).toEqual({ idLiga: 1, idLigaJuego: 2 });
-            opts?.onSuccess?.({ message: 'Liga iniciada' });
+            opts?.onSuccess?.({ message: 'La liga ya se encuentra en curso' });
         });
 
         const { getByText } = renderWithProviders(<Home />);
@@ -80,13 +80,13 @@ describe('Home', () => {
             { idLiga: 1, idLigaJuego: 2 },
             expect.objectContaining({ onSuccess: expect.any(Function) }),
         );
-        expect(Alert.alert).toHaveBeenCalledWith('', 'Liga iniciada');
+        expect(Alert.alert).toHaveBeenCalledWith('', 'La liga ya se encuentra en curso');
     });
 
     it('“Actualizar mercado”: si resolveBids devuelve message, no llama a updateMarket y alerta', () => {
         resolveBidsMutate.mockImplementation((idLigaJuego, opts) => {
             expect(idLigaJuego).toBe(2);
-            opts?.onSuccess?.({ message: 'Pujas ya resueltas' });
+            opts?.onSuccess?.({ message: 'La liga aún no ha comenzado' });
         });
 
         const { getByText } = renderWithProviders(<Home />);
@@ -94,7 +94,7 @@ describe('Home', () => {
 
         expect(resolveBidsMutate).toHaveBeenCalledWith(2, expect.any(Object));
         expect(updateMarketMutate).not.toHaveBeenCalled();
-        expect(Alert.alert).toHaveBeenCalledWith('', 'Pujas ya resueltas');
+        expect(Alert.alert).toHaveBeenCalledWith('', 'La liga aún no ha comenzado');
     });
 
     it('“Actualizar mercado”: si resolveBids NO trae message, llama a updateMarket y alerta su message si existe', () => {
@@ -104,7 +104,7 @@ describe('Home', () => {
         });
         updateMarketMutate.mockImplementation((vars, opts) => {
             expect(vars).toEqual({ idLiga: 1, idLigaJuego: 2 });
-            opts?.onSuccess?.({ message: 'Mercado actualizado' });
+            opts?.onSuccess?.({ message: 'No es necesario actualizar el mercado todavía' });
         });
 
         const { getByText } = renderWithProviders(<Home />);
@@ -115,7 +115,10 @@ describe('Home', () => {
             { idLiga: 1, idLigaJuego: 2 },
             expect.objectContaining({ onSuccess: expect.any(Function) }),
         );
-        expect(Alert.alert).toHaveBeenCalledWith('', 'Mercado actualizado');
+        expect(Alert.alert).toHaveBeenCalledWith(
+            '',
+            'No es necesario actualizar el mercado todavía',
+        );
     });
 
     it('“Actualizar clasificacion”: si updateStandings NO trae message, llama a distributeRewards con idLigaJuego', () => {
@@ -138,13 +141,13 @@ describe('Home', () => {
     it('“Actualizar clasificacion”: si updateStandings devuelve message, alerta y NO llama a distributeRewards', () => {
         updateStandingsMutate.mockImplementation((vars, opts) => {
             expect(vars).toEqual({ idLiga: 1, idLigaJuego: 2 });
-            opts?.onSuccess?.({ message: 'Clasificación actualizada' });
+            opts?.onSuccess?.({ message: 'La jornada no ha comenzado o está en curso' });
         });
 
         const { getByText } = renderWithProviders(<Home />);
         fireEvent.press(getByText('Actualizar clasificacion'));
 
-        expect(Alert.alert).toHaveBeenCalledWith('', 'Clasificación actualizada');
+        expect(Alert.alert).toHaveBeenCalledWith('', 'La jornada no ha comenzado o está en curso');
         expect(distributeRewardsMutate).not.toHaveBeenCalled();
     });
 

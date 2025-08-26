@@ -178,7 +178,9 @@ describe('TransferMarket', () => {
     it('éxito con mensaje: muestra Alert.alert y NO cierra modal', async () => {
         // 1) Mock de mutate que ejecuta onSuccess({ message: 'Puja registrada' })
         const mutateMock = jest.fn((payload, opts) => {
-            Promise.resolve().then(() => opts?.onSuccess?.({ message: 'Puja registrada' }));
+            Promise.resolve().then(() =>
+                opts?.onSuccess?.({ message: 'Ya has realizado una puja por este jugador' }),
+            );
         });
         useApiMutation.mockImplementation(() => ({ mutate: mutateMock }));
 
@@ -202,7 +204,7 @@ describe('TransferMarket', () => {
 
         // 4) Espera a que onSuccess dispare el Alert y verifica que el modal sigue abierto
         await waitFor(() => {
-            expect(alertSpy).toHaveBeenCalledWith('', 'Puja registrada');
+            expect(alertSpy).toHaveBeenCalledWith('', 'Ya has realizado una puja por este jugador');
             expect(getByText('Hacer puja')).toBeTruthy(); // sigue visible (no se cierra)
         });
     });

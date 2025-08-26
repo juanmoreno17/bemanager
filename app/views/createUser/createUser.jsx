@@ -28,10 +28,19 @@ export const CreateUser = (props) => {
     const [Phone, setPhone] = useState();
     const [Uri, setUri] = useState();
     const [view, setView] = useState(false);
+    const [errors, setErrors] = useState({ userName: '', Email: '', Password: '', Phone: '' });
 
     const navigation = useNavigation();
 
     const { onSubmit } = useCreateUser();
+
+    const cleanStates = () => {
+        setUserName('');
+        setEmail('');
+        setPassword('');
+        setPhone('');
+        setErrors({ userName: '', Email: '', Password: '', Phone: '' });
+    };
 
     return (
         <View style={styles.container}>
@@ -41,7 +50,10 @@ export const CreateUser = (props) => {
                     width: 75,
                     marginTop: 40,
                 }}
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    navigation.goBack();
+                    cleanStates();
+                }}
             >
                 <Image
                     source={back}
@@ -54,7 +66,7 @@ export const CreateUser = (props) => {
                         marginTop: 4,
                     }}
                 />
-                <Text style={{ color: '#52C1CA', fontWeight: 'bold', fontSize: 16 }}>Back</Text>
+                <Text style={{ color: '#52C1CA', fontWeight: 'bold', fontSize: 16 }}>Volver</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={{
@@ -123,40 +135,56 @@ export const CreateUser = (props) => {
                 />
             </ModalCustom>
             <Input
-                title="Username"
-                placeholder="Username"
+                title="Nombre de usuario"
                 custom={{
+                    placeholder: 'Nombre de usuario',
                     value: userName,
-                    onChangeText: (name) => setUserName(name),
+                    onChangeText: (name) => {
+                        setUserName(name);
+                        setErrors((err) => ({ ...err, userName: '' }));
+                    },
                 }}
             />
+            {errors.userName ? <Text style={styles.error}>{errors.userName}</Text> : null}
             <Input
-                title="Email"
-                placeholder="Email"
+                title="Correo electrónico"
                 custom={{
+                    placeholder: 'Correo electrónico',
                     value: Email,
-                    onChangeText: (em) => setEmail(em),
+                    onChangeText: (em) => {
+                        setEmail(em);
+                        setErrors((err) => ({ ...err, Email: '' }));
+                    },
                 }}
             />
+            {errors.Email ? <Text style={styles.error}>{errors.Email}</Text> : null}
             <Input
-                title="Password"
-                placeholder="Password"
+                title="Contraseña"
                 custom={{
+                    placeholder: 'Contraseña',
                     value: Password,
-                    onChangeText: (psw) => setPassword(psw),
+                    onChangeText: (psw) => {
+                        setPassword(psw);
+                        setErrors((err) => ({ ...err, Password: '' }));
+                    },
                     secureTextEntry: true,
                 }}
             />
+            {errors.Password ? <Text style={styles.error}>{errors.Password}</Text> : null}
             <Input
-                title="Phone"
-                placeholder="Phone"
+                title="Teléfono"
                 custom={{
+                    placeholder: 'Teléfono',
                     value: Phone,
-                    onChangeText: (ph) => setPhone(ph),
+                    onChangeText: (ph) => {
+                        setPhone(ph);
+                        setErrors((err) => ({ ...err, Phone: '' }));
+                    },
                 }}
             />
+            {errors.Phone ? <Text style={styles.error}>{errors.Phone}</Text> : null}
             <Button
-                title="Save"
+                title="Guardar"
                 action={() => {
                     const usr = {
                         email: Email,
@@ -165,7 +193,7 @@ export const CreateUser = (props) => {
                         displayName: userName,
                         photoURL: Uri,
                     };
-                    onSubmit(usr);
+                    onSubmit(usr, cleanStates, setErrors);
                 }}
             />
         </View>

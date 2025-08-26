@@ -45,13 +45,13 @@ jest.mock('../../app/components/input', () => {
                 <Text>{title}</Text>
                 <TextInput
                     testID={
-                        title === 'Email'
+                        title === 'Correo electrónico'
                             ? 'email-input'
-                            : title === 'Password'
+                            : title === 'Contraseña'
                               ? 'password-input'
                               : 'text-input'
                     }
-                    placeholder={placeholder}
+                    placeholder={custom?.placeholder || placeholder}
                     value={custom?.value}
                     onChangeText={custom?.onChangeText}
                 />

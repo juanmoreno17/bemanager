@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         paddingVertical: 20,
         paddingHorizontal: 30,
-        marginBottom: 107,
+        marginBottom: 155,
     },
     text2: {
         fontSize: 20,
