@@ -62,7 +62,7 @@ export const Team = () => {
                 )}
             </View>
             <FlatList
-                data={squadData.data}
+                data={squadData?.data}
                 keyExtractor={(item) => item.idJugador}
                 renderItem={({ item }) => (
                     <PlayerItem

@@ -1,6 +1,3 @@
-// app/views/team/team.test.js
-
-// --- Mocks: SIEMPRE antes de importar el componente ---
 jest.mock('../../hooks/gameLeagueContext', () => ({
     useGameLeagueContext: jest.fn(),
 }));
@@ -15,7 +12,6 @@ jest.mock('../../api/hooks', () => ({
     useApiMutation: jest.fn(),
 }));
 
-// Mock de PlayerItem: lo simplificamos a un <Text> presionable
 jest.mock('../../components/playerItem', () => {
     const React = require('react');
     const { Text } = require('react-native');
@@ -58,21 +54,14 @@ describe('Team', () => {
     };
 
     const sellPlayerFn = jest.fn((vars, opts) => {
-        // Llamamos a onSuccess directamente para emular éxito en la mutación
         opts?.onSuccess?.();
     });
 
     beforeEach(() => {
         jest.clearAllMocks();
-
-        // Contextos
         useGameLeagueContext.mockReturnValue({ myGameLeague });
         useUserContext.mockReturnValue({ user });
-
-        // Queries (Team usa 2 useApiQuery):
-        // ['getBudget', myGameLeague.idLigaJuego, user.uid]
-        // ['getSquad',  myGameLeague.idLiga, myGameLeague.idLigaJuego, user.uid]
-        useApiQuery.mockImplementation((key /*, fn */) => {
+        useApiQuery.mockImplementation((key) => {
             if (Array.isArray(key) && key[0] === 'getBudget') {
                 return { data: budgetOk, isLoading: false, refetch: refetchBudget };
             }
@@ -81,16 +70,9 @@ describe('Team', () => {
             }
             return { isLoading: false, refetch: jest.fn() };
         });
-
-        // Mutación
         useApiMutation.mockReturnValue({ mutate: sellPlayerFn });
-
-        // useFocusEffect: ejecuta el callback al montar
         jest.spyOn(nav, 'useFocusEffect').mockImplementation((cb) => cb());
-
-        // Alert: mock para “confirmar” directamente
         jest.spyOn(Alert, 'alert').mockImplementation((title, message, buttons) => {
-            // Ejecuta el onPress del botón "Si" si está
             const yes = buttons?.find((b) => b.text === 'Si');
             yes?.onPress?.();
         });
@@ -99,16 +81,13 @@ describe('Team', () => {
     it('renderiza presupuesto y lista de jugadores cuando no hay loading', () => {
         const { getByText } = renderWithProviders(<Team />);
 
-        // Presupuesto formateado (admitimos . o , como separador)
         expect(getByText(/Presupuesto:\s*5[\.,]000[\.,]000 €/)).toBeTruthy();
 
-        // Jugadores
         expect(getByText('Jugador 1')).toBeTruthy();
         expect(getByText('Jugador 2')).toBeTruthy();
     });
 
     it('muestra aviso si el presupuesto es negativo', () => {
-        // Fuerza presupuesto negativo para este test
         useApiQuery.mockImplementation((key) => {
             if (key[0] === 'getBudget') {
                 return { data: budgetNeg, isLoading: false, refetch: refetchBudget };
@@ -136,13 +115,10 @@ describe('Team', () => {
     it('al pulsar un jugador: abre Alert, confirma "Si", llama sellPlayer y re‐refetch', async () => {
         const { getByText } = renderWithProviders(<Team />);
 
-        // Pulsamos el primer jugador (nuestro PlayerItem mock llama a action onPress)
         fireEvent.press(getByText('Jugador 1'));
 
-        // Se debió abrir el Alert (mockeado) y confirmar “Si” automáticamente
         expect(Alert.alert).toHaveBeenCalled();
 
-        // La mutación recibe el payload correcto
         expect(sellPlayerFn).toHaveBeenCalled();
         const [vars] = sellPlayerFn.mock.calls[0];
 
@@ -153,9 +129,8 @@ describe('Team', () => {
             idJugador: 'J1',
         });
 
-        // onSuccess de la mutación provoca re‐fetch de presupuesto y plantilla
         await waitFor(() => {
-            expect(refetchBudget).toHaveBeenCalledTimes(2); // 1 en focus + 1 tras success
+            expect(refetchBudget).toHaveBeenCalledTimes(2);
             expect(refetchSquad).toHaveBeenCalledTimes(2);
         });
     });

@@ -25,9 +25,9 @@ module.exports = function (db) {
                             const batch = db.batch();
                             querySnapshot.forEach((doc) => {
                                 const jugadorRef = doc.ref;
-                                batch.update(jugadorRef, { puntuacion: 0 }); // Actualiza el campo puntuacion
+                                batch.update(jugadorRef, { puntuacion: 0 });
                             });
-                            return batch.commit(); // Ejecuta las actualizaciones en lote
+                            return batch.commit();
                         })
                         .then(() => {
                             return db

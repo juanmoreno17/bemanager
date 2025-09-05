@@ -49,7 +49,6 @@ module.exports = function (db) {
                                 querySnapshot.forEach((i) =>
                                     gamePlayers.push({ id: i.id, ...i.data() }),
                                 );
-                                // Obtener los jugadores de example3
                                 return db
                                     .collection('Ligas')
                                     .where('idLiga', '==', idLiga)
@@ -76,8 +75,6 @@ module.exports = function (db) {
 
                                                     if (!jugadoresSinPuntuar.includes(idUsuario)) {
                                                         let puntuacion = 0;
-
-                                                        // Sumar las puntuaciones de los jugadores que coincidan con la plantilla
                                                         plantilla.forEach((playerId) => {
                                                             const matchingPlayer = allPlayers.find(
                                                                 (player) =>
@@ -85,15 +82,12 @@ module.exports = function (db) {
                                                             );
                                                             if (matchingPlayer) {
                                                                 puntuacion +=
-                                                                    matchingPlayer.puntuacion || 0; // Sumar el campo 'puntuacion'
+                                                                    matchingPlayer.puntuacion || 0;
                                                             }
                                                         });
-
-                                                        // Actualizar los campos puntuacion y puntuacionTotal
                                                         const puntuacionTotal =
                                                             (gamePlayer.puntuacionTotal || 0) +
                                                             puntuacion;
-
                                                         db.collection('LigasJuego')
                                                             .doc(id)
                                                             .collection('Jugadores')

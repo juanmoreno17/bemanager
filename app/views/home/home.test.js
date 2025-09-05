@@ -36,13 +36,9 @@ describe('Home', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-
-        // Valores por defecto de los contextos
         useUserContext.mockReturnValue({ user: userOwner });
         useGameLeagueContext.mockReturnValue({ myGameLeague });
-
         jest.spyOn(Alert, 'alert').mockImplementation(jest.fn());
-
         useApiMutation.mockImplementation((fn) => {
             if (fn === startGameLeague) return { mutate: startGameLeagueMutate };
             if (fn === updateMarket) return { mutate: updateMarketMutate };
@@ -54,7 +50,6 @@ describe('Home', () => {
     });
 
     it('renderiza el panel admin para el propietario y los botones', () => {
-        // No necesitamos comportamiento especial de mutate para este test
         const { getByText } = renderWithProviders(<Home />);
 
         expect(
@@ -68,7 +63,6 @@ describe('Home', () => {
 
     it('“Empezar liga” llama a startGameLeague y muestra Alert si hay message', () => {
         startGameLeagueMutate.mockImplementation((vars, opts) => {
-            // comprobamos argumentos y disparamos onSuccess con message
             expect(vars).toEqual({ idLiga: 1, idLigaJuego: 2 });
             opts?.onSuccess?.({ message: 'La liga ya se encuentra en curso' });
         });
@@ -99,7 +93,6 @@ describe('Home', () => {
 
     it('“Actualizar mercado”: si resolveBids NO trae message, llama a updateMarket y alerta su message si existe', () => {
         resolveBidsMutate.mockImplementation((_idLigaJuego, opts) => {
-            // Sin message → debe encadenar a updateMarket
             opts?.onSuccess?.({});
         });
         updateMarketMutate.mockImplementation((vars, opts) => {
@@ -124,7 +117,6 @@ describe('Home', () => {
     it('“Actualizar clasificacion”: si updateStandings NO trae message, llama a distributeRewards con idLigaJuego', () => {
         updateStandingsMutate.mockImplementation((vars, opts) => {
             expect(vars).toEqual({ idLiga: 1, idLigaJuego: 2 });
-            // Sin message → debe llamar a distributeRewards
             opts?.onSuccess?.({});
         });
 

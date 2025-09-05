@@ -1,6 +1,3 @@
-// app/views/login/login.test.js
-
-// --- Mocks: SIEMPRE antes de importar el componente ---
 jest.mock('./login.hooks', () => ({
     useLogin: jest.fn(),
 }));
@@ -9,7 +6,6 @@ jest.mock('../../hooks/userContext', () => ({
     useUserContext: jest.fn(),
 }));
 
-// Mock de Firebase Auth: auth() devuelve onAuthStateChanged espía
 jest.mock('@react-native-firebase/auth', () => {
     const onAuthStateChanged = jest.fn();
     const signOut = jest.fn();
@@ -17,12 +13,10 @@ jest.mock('@react-native-firebase/auth', () => {
         onAuthStateChanged,
         signOut,
     }));
-    // Exponer para inspección en los tests (vía require)
     authFn._onAuthStateChanged = onAuthStateChanged;
     return authFn;
 });
 
-// --- Ahora importa dependencias y el SUT ---
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react-native';
 import { renderWithProviders, mockNavigate } from '../../../__tests__/utils/renderWithProviders';
@@ -37,8 +31,6 @@ describe('Login', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-
-        // Hooks
         useLogin.mockReturnValue({ onSubmit });
         useUserContext.mockReturnValue({ setUser });
     });
@@ -46,14 +38,11 @@ describe('Login', () => {
     it('renderiza inputs, botón Login y link "¿No tienes cuenta? Regístrate"', () => {
         const { getByText } = renderWithProviders(<Login />);
 
-        // El mock de Input del helper renderiza el título como <Text>
         expect(getByText('Correo electrónico')).toBeTruthy();
         expect(getByText('Contraseña')).toBeTruthy();
 
-        // Botón
         expect(getByText('Iniciar sesión')).toBeTruthy();
 
-        // Link
         expect(getByText('¿No tienes cuenta? Regístrate')).toBeTruthy();
     });
 
@@ -88,7 +77,6 @@ describe('Login', () => {
         const auth = require('@react-native-firebase/auth');
         const {} = renderWithProviders(<Login />);
 
-        // Recupera el callback pasado a onAuthStateChanged y ejecútalo con un usuario simulado
         const cb = auth._onAuthStateChanged.mock.calls[0][0];
         const fakeUser = { uid: 'u1', email: 'test@example.com' };
         cb(fakeUser);

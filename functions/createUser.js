@@ -2,12 +2,10 @@ const { getAuth } = require('firebase-admin/auth');
 
 module.exports = function (req, res) {
     const { email, phoneNumber, password, displayName, photoURL } = req.body;
-    // validar campos
     if (!email) return res.status(404).send({ err: 'No se ha enviado un email' });
     if (!phoneNumber) return res.status(404).send({ err: 'No se ha enviado un phoneNumber' });
     if (!password) return res.status(404).send({ err: 'No se ha enviado un password' });
     if (!displayName) return res.status(404).send({ err: 'No se ha enviado un displayName' });
-    // crear el usuario
     getAuth()
         .createUser({
             email,

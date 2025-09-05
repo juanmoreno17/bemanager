@@ -3,22 +3,17 @@ import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
-//Hooks
 import { useCreateUser } from './createUser.hooks';
 
-//Components
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
 import { ModalCustom } from '../../components/modal';
 
-//Styles
 import { styles } from './createUser.styles';
 
-//Assets
 import userImg from '../../assets/icons/usuario.png';
 import back from '../../assets/icons/back.png';
 
-//Utils
 import { UploadFile } from '../../utils/uploadFile';
 
 export const CreateUser = (props) => {
@@ -138,6 +133,7 @@ export const CreateUser = (props) => {
                 title="Nombre de usuario"
                 custom={{
                     placeholder: 'Nombre de usuario',
+                    placeholderTextColor: 'transparent',
                     value: userName,
                     onChangeText: (name) => {
                         setUserName(name);
@@ -150,6 +146,7 @@ export const CreateUser = (props) => {
                 title="Correo electrónico"
                 custom={{
                     placeholder: 'Correo electrónico',
+                    placeholderTextColor: 'transparent',
                     value: Email,
                     onChangeText: (em) => {
                         setEmail(em);
@@ -162,6 +159,7 @@ export const CreateUser = (props) => {
                 title="Contraseña"
                 custom={{
                     placeholder: 'Contraseña',
+                    placeholderTextColor: 'transparent',
                     value: Password,
                     onChangeText: (psw) => {
                         setPassword(psw);
@@ -175,6 +173,7 @@ export const CreateUser = (props) => {
                 title="Teléfono"
                 custom={{
                     placeholder: 'Teléfono',
+                    placeholderTextColor: 'transparent',
                     value: Phone,
                     onChangeText: (ph) => {
                         setPhone(ph);

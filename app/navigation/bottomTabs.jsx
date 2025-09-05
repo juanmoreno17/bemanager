@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 
-// Routes
 import Routes from './bottomTabsRoutes';
 
 const Tab = createBottomTabNavigator();

@@ -6,11 +6,9 @@ import auth from '@react-native-firebase/auth';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import { styles } from './stack.styles';
 
-//Screen
 import Routes from './stackRoutes';
 import BottomTabs from './bottomTabs';
 
-//Assets
 import logout from '../assets/icons/logout.png';
 
 const Stack = createStackNavigator();

@@ -43,7 +43,6 @@ module.exports = function (db) {
                                             gamePlayers.push({ id: i.id, ...i.data() }),
                                         );
                                         gamePlayers = gamePlayers.sort(() => 0.5 - Math.random());
-                                        // Obtener los jugadores de example3
                                         return db
                                             .collection('Ligas')
                                             .where('idLiga', '==', idLiga)
@@ -65,10 +64,9 @@ module.exports = function (db) {
                                                         playersSnapshot.forEach((playerDoc) => {
                                                             allPlayers.push(playerDoc.data());
                                                         });
-                                                        const usedPlayers = new Set(); // Almacena los jugadores ya seleccionados
+                                                        const usedPlayers = new Set();
                                                         const updatePromises = gamePlayers.map(
                                                             (gamePlayer) => {
-                                                                // Filtrar y seleccionar jugadores excluyendo los ya usados
                                                                 const porteros = allPlayers.filter(
                                                                     (player) =>
                                                                         player.posicion ===
@@ -141,11 +139,9 @@ module.exports = function (db) {
                                                                         (player) =>
                                                                             player.idJugador,
                                                                     );
-                                                                // Marcar los jugadores seleccionados como usados
                                                                 jugadoresIds.forEach((id) =>
                                                                     usedPlayers.add(id),
                                                                 );
-                                                                // Actualizar el documento del jugador con una plantilla única
                                                                 return db
                                                                     .collection('LigasJuego')
                                                                     .doc(id)

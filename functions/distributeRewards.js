@@ -32,23 +32,14 @@ module.exports = function (db) {
                                 gamePlayers.sort((a, b) => b.puntuacion - a.puntuacion);
                                 gamePlayers.forEach((gamePlayer, index) => {
                                     if (jugadoresSinPuntuar.includes(gamePlayer.idUsuario)) {
-                                        return; // No actualizar si el idUsuario está en jugadoresSinPuntuar
+                                        return;
                                     }
-
                                     let bonus = 0;
-
-                                    // Asignar los bonos a los tres primeros
-                                    if (index === 0) bonus += 20000000; // Primer lugar
-                                    if (index === 1) bonus += 10000000; // Segundo lugar
-                                    if (index === 2) bonus += 5000000; // Tercer lugar
-
-                                    // Sumar el valor de puntuacion * 100.000
+                                    if (index === 0) bonus += 20000000;
+                                    if (index === 1) bonus += 10000000;
+                                    if (index === 2) bonus += 5000000;
                                     bonus += gamePlayer.puntuacion * 100000;
-
-                                    // Actualizar el presupuesto
                                     const nuevoPresupuesto = gamePlayer.presupuesto + bonus;
-
-                                    // Actualizar en la base de datos
                                     db.collection('LigasJuego')
                                         .doc(id)
                                         .collection('Jugadores')
@@ -58,7 +49,6 @@ module.exports = function (db) {
                             });
                     })
                     .then(() => {
-                        // Eliminar el campo jugadoresSinPuntuar
                         return db.collection('LigasJuego').doc(id).update({
                             jugadoresSinPuntuar: FieldValue.delete(),
                         });

@@ -50,32 +50,5 @@ module.exports = function (db) {
             .catch((error) =>
                 res.status(501).send({ err: 'No se encontró un documento con ese idLiga', error }),
             );
-        /*const colecRef = db.collection(`/Ligas/${idLiga}/Divisiones/${idDivision}/Equipos`);
-
-        data.forEach((i) => {
-            colecRef
-                .add(i)
-                .then((doc) => {
-                    console.log('Document written with ID: ', doc.id);
-                })
-                .catch((error) => {
-                    console.error('Error adding document: ', error);
-                });
-        });*/
     };
 };
-
-/*const colecRef = db.collection(
-    '/Ligas/7zEBRvKgL0312o6AaaIt/Divisiones/b3JEETFk4crwgRlbRY8o/Equipos',
-);
-
-data.forEach((i) => {
-    colecRef
-        .add(i)
-        .then((doc) => {
-            console.log('Document written with ID: ', doc.id);
-        })
-        .catch((error) => {
-            console.error('Error adding document: ', error);
-        });
-});*/

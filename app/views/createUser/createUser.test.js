@@ -1,20 +1,16 @@
-// app/views/createUser/createUser.test.js
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import { renderWithProviders } from '../../../__tests__/utils/renderWithProviders';
 import { CreateUser } from './createUser';
 const { UploadFile: mockUploadFile } = require('../../utils/uploadFile');
 
-// Importa el módulo completo para poder hacer spyOn
 import * as ImagePicker from 'react-native-image-picker';
 
-// Mock del hook del feature
 const mockOnSubmit = jest.fn();
 jest.mock('./createUser.hooks', () => ({
     useCreateUser: () => ({ onSubmit: mockOnSubmit }),
 }));
 
-// Mock del user context (evita "useUserContext debe ser usado dentro de UserProvider")
 jest.mock('../../hooks/userContext', () => ({
     useUserContext: () => ({ user: { uid: 'u1', displayName: 'Tester' } }),
 }));
@@ -26,7 +22,6 @@ describe('CreateUser', () => {
     });
 
     it('rellena el formulario, selecciona imagen desde galería y llama a onSubmit con photoURL', async () => {
-        // spy + implementación del callback del picker
         jest.spyOn(ImagePicker, 'launchImageLibrary').mockImplementation((opts, cb) => {
             cb?.({ didCancel: false, assets: [{ uri: 'file:///tmp/gallery.jpg' }] });
         });
@@ -35,19 +30,15 @@ describe('CreateUser', () => {
             <CreateUser />,
         );
 
-        // Rellenar inputs
         fireEvent.changeText(getByPlaceholderText('Nombre de usuario'), 'Juan');
         fireEvent.changeText(getByPlaceholderText('Correo electrónico'), 'juan@mail.com');
         fireEvent.changeText(getByPlaceholderText('Contraseña'), '1234');
         fireEvent.changeText(getByPlaceholderText('Teléfono'), '600123123');
 
-        // Abrir el modal pulsando la imagen (tiene testID)
         fireEvent.press(getByTestId('profile-picture'));
 
-        // Pulsar "Abrir Galeria"
         fireEvent.press(await findByText('Abrir Galeria'));
 
-        // Guardar
         fireEvent.press(getByText('Guardar'));
     });
 
@@ -72,13 +63,10 @@ describe('CreateUser', () => {
     });
 
     it('Back ejecuta navigation.goBack()', () => {
-        // tu helper ya mockea useNavigation; aquí solo disparamos el onPress del TouchableOpacity
         const { getByText } = renderWithProviders(<CreateUser />);
         const backText = getByText('Volver');
-        // El onPress está en el TouchableOpacity padre
         fireEvent.press(backText.parent);
 
-        // Obtenemos la instancia mockeada por el helper/setup
         const nav = require('@react-navigation/native').useNavigation();
         expect(nav.goBack).toHaveBeenCalled();
     });

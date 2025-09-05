@@ -21,16 +21,8 @@ export const Login = ({ click = () => {}, print = () => {} }) => {
     const navigation = useNavigation();
     const { onSubmit } = useLogin();
 
-    /*auth().signOut()
-          .then(() => {
-
-          }).catch((error) => {
-
-          });*/
-
     useEffect(() => {
         auth().onAuthStateChanged((usr) => {
-            //console.log('User', usr);
             if (usr) {
                 setUser(usr);
                 navigation.navigate('Leagues');

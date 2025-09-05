@@ -32,8 +32,8 @@ module.exports = function (db) {
                             .collection('Mercado')
                             .get()
                             .then((mercadoSnapshot) => {
-                                if (mercadoSnapshot.empty) return; // Si la colección está vacía, no hacer nada
-                                if (now - dataDate.toDate() < dayInMilliseconds) return; // Verificar si ha pasado un día desde la última actualización
+                                if (mercadoSnapshot.empty) return;
+                                if (now - dataDate.toDate() < dayInMilliseconds) return;
                                 const filteredDocs = [];
                                 mercadoSnapshot.forEach((doc) => {
                                     const data = doc.data();
@@ -41,16 +41,14 @@ module.exports = function (db) {
                                         filteredDocs.push(data);
                                     }
                                 });
-                                if (filteredDocs.length === 0) return; // Si no hay pujas, no hacer nada
+                                if (filteredDocs.length === 0) return;
                                 console.log('Pujas encontradas:', filteredDocs.length);
                                 filteredDocs.forEach((bid) => {
                                     const { idJugador, pujas } = bid;
-                                    // Encontrar la puja más alta
                                     const highestBid = pujas.reduce((max, current) => {
                                         if (current.pujaActual > max.pujaActual) {
                                             return current;
                                         } else if (current.pujaActual === max.pujaActual) {
-                                            // Si hay empate, quedarse con la puja más antigua
                                             return new Date(current.fechaPuja) <
                                                 new Date(max.fechaPuja)
                                                 ? current

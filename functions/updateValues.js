@@ -25,38 +25,32 @@ module.exports = function (db) {
                             const jugadorRef = doc.ref;
                             const jugadorData = doc.data();
                             let nuevoValor = jugadorData.valor;
-
-                            // Actualizar el valor según la puntuación
                             if (jugadorData.puntuacion >= 0 && jugadorData.puntuacion <= 5.9) {
-                                nuevoValor *= 0.8; // Disminuir 20%
+                                nuevoValor *= 0.8;
                             } else if (
                                 jugadorData.puntuacion >= 6 &&
                                 jugadorData.puntuacion <= 6.4
                             ) {
-                                nuevoValor *= 0.9; // Disminuir 10%
+                                nuevoValor *= 0.9;
                             } else if (
                                 jugadorData.puntuacion >= 7 &&
                                 jugadorData.puntuacion <= 7.9
                             ) {
-                                nuevoValor *= 1.1; // Aumentar 10%
+                                nuevoValor *= 1.1;
                             } else if (
                                 jugadorData.puntuacion >= 8 &&
                                 jugadorData.puntuacion <= 8.9
                             ) {
-                                nuevoValor *= 1.2; // Aumentar 20%
+                                nuevoValor *= 1.2;
                             } else if (
                                 jugadorData.puntuacion >= 9 &&
                                 jugadorData.puntuacion <= 10
                             ) {
-                                nuevoValor *= 1.3; // Aumentar 30%
+                                nuevoValor *= 1.3;
                             }
-
-                            // Asegurarse de que el valor no sea menor a 100,000
                             if (nuevoValor < 100000) {
                                 nuevoValor = 100000;
                             }
-
-                            // Actualizar el valor del jugador
                             batch.update(jugadorRef, { valor: nuevoValor });
                         });
                         return batch.commit();

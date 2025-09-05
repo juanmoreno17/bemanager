@@ -34,8 +34,6 @@ export const Leagues = () => {
     });
     const { handleCreateLeague, handleJoinLeague, renderItem } = useLeagues();
 
-    //console.log('User in leagues:', user);
-
     const {
         data: leaguesData,
         isLoading: leaguesLoading,

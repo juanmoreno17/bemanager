@@ -93,8 +93,6 @@ module.exports = function (db) {
                                                                     data.idJugador,
                                                                 );
                                                             });
-
-                                                        // Seleccionar 20 jugadores aleatorios
                                                         while (
                                                             allPlayers.length < 20 &&
                                                             filteredPlayers.length > 0
@@ -106,7 +104,7 @@ module.exports = function (db) {
                                                             allPlayers.push(
                                                                 filteredPlayers[randomIndex].data(),
                                                             );
-                                                            filteredPlayers.splice(randomIndex, 1); // Eliminar jugador seleccionado
+                                                            filteredPlayers.splice(randomIndex, 1);
                                                         }
                                                         const colecRef = db
                                                             .collection('LigasJuego')

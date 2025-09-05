@@ -104,7 +104,7 @@ export const TransferMarket = () => {
                 <Text style={styles.text2}>Próxima actualización del mercado en: {timeLeft}</Text>
             </View>
             <FlatList
-                data={marketData.data}
+                data={marketData?.data}
                 keyExtractor={(item) => item.idJugador}
                 renderItem={({ item }) => (
                     <PlayerItem
@@ -130,6 +130,7 @@ export const TransferMarket = () => {
                             '€ / Valor max: ' +
                             (playerValue * 1.5).toLocaleString('es-ES') +
                             '€',
+                        placeholderTextColor: '#A9A9A9',
                         onChangeText: (bid) => {
                             setBid(Number(bid));
                             setErrors((_errors) => ({ ..._errors, bid: '' }));

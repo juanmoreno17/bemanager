@@ -20,13 +20,10 @@ export function UploadFile(file) {
     formData.append('api_key', apiKey);
     formData.append('signature', signature);
 
-    return (
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then((res) => res.json())
-            //.then(res => console.log({ res }))
-            .catch((err) => console.error({ err }))
-    );
+    return fetch(url, {
+        method: 'POST',
+        body: formData,
+    })
+        .then((res) => res.json())
+        .catch((err) => console.error({ err }));
 }
